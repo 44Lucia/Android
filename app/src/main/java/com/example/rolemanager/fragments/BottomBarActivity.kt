@@ -18,18 +18,22 @@ class BottomBarActivity : AppCompatActivity() {
         binding = ActivityBottomBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val firstFragment = FirstFragment()
-        val imageFragment = ImageFragment()
+        val menuFragment = MenuFragment()
+        val addFragment = AddFragment()
+        val messagesFragment = MessagesFragment()
+        val profileFragment = ProfileFragment()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId){
-                R.id.firstButton -> setFragment(firstFragment)
-                R.id.secondButton -> setFragment(imageFragment)
+                R.id.menuButton -> setFragment(menuFragment)
+                R.id.addButton -> setFragment(addFragment)
+                R.id.messagesButton -> setFragment(messagesFragment)
+                R.id.profileButton -> setFragment(profileFragment)
             }
             true
         }
 
-        setFragment(firstFragment)
+        setFragment(menuFragment)
     }
 
     fun setFragment(fragment: Fragment){

@@ -1,8 +1,11 @@
 package com.example.rolemanager
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.rolemanager.databinding.ActivityMainBinding
+import com.example.rolemanager.fragments.BottomBarActivity
+import com.example.rolemanager.fragments.MenuFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,7 +13,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        supportActionBar?.hide()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.login.setOnClickListener {
+            startActivity(Intent(this, BottomBarActivity::class.java))
+        }
     }
 }
