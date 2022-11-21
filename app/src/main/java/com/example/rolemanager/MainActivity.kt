@@ -19,8 +19,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.login.setOnClickListener {
+        binding.signin.setOnClickListener {
             startActivity(Intent(this, BottomBarActivity::class.java))
+        }
+        binding.login.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }
