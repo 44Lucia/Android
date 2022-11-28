@@ -2,4 +2,11 @@
     <string name="app_name">roleManager</string>
     <string name="login_user_hint">User</string>
     <string name="login_password_hint">Password</string>
+    <string name="login_email_hint">Email</string>
+    <string name="signIn_user_hint">User</string>
+    <string name="signIn_age_hint">Age</string>
+    <string name="signIn_password_hint">Password</string>
+    <string name="signIn_email_hint">Email</string>
+    <string name="signIn_photo_hint">Photo</string>
+    <string name="signIn_text_hint">Text</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.rolemanager.databinding.ActivityMainBinding
 import com.example.rolemanager.fragments.BottomBarActivity
 import com.example.rolemanager.fragments.MenuFragment
+import com.example.rolemanager.particlesList.PepoLista
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.signin.setOnClickListener {
-            startActivity(Intent(this, BottomBarActivity::class.java))
+            startActivity(Intent(this, /*BottomBarActivity*/SignInActivity::class.java))
         }
         binding.login.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, /*PepoLista*/LoginActivity::class.java))
         }
     }
 }
