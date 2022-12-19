@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.signin.setOnClickListener {
-            startActivity(Intent(this, /*BottomBarActivity*/SignInActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
         }
         binding.login.setOnClickListener {
-            startActivity(Intent(this, /*PepoLista*/LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }

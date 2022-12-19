@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/emailInputWrapper"
-        app:layout_constraintStart_toStartOf="@+id/emailInputWrapper" />
+        app:layout_constraintBottom_toTopOf="@+id/passwordConfirmInputWrapper"
+        app:layout_constraintStart_toStartOf="@+id/passwordConfirmInputWrapper" />
 
     <Button
         android:id="@+id/returnButton"
@@ -107,7 +107,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailInputWrapper"
+        android:id="@+id/passwordConfirmInputWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -137,6 +137,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInputWrapper" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordConfirmInputWrapper" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

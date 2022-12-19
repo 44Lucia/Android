@@ -2,7 +2,7 @@ package com.example.rolemanager.messenger.chat
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firstapp.messenger.chat.ChatRecyclerViewAdapter
+import com.example.rolemanager.messenger.chat.ChatRecyclerViewAdapter
 import com.example.rolemanager.databinding.ActivityChatBinding
 
 class ChatActivity : AppCompatActivity() {

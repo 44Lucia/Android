@@ -11,7 +11,7 @@ import com.example.rolemanager.messenger.contacts.model.Contact
 import com.google.android.gms.ads.*
 import com.google.firebase.auth.FirebaseAuth
 import androidx.activity.viewModels
-import com.example.firstapp.messenger.contacts.ContactsRecyclerViewAdapter
+import com.example.rolemanager.messenger.contacts.ContactsRecyclerViewAdapter
 import com.example.rolemanager.LoginActivity
 
 
@@ -52,8 +52,6 @@ class ContactsActivity : AppCompatActivity() {
         binding.adView.loadAd(request)
 
         adapter.loadAd()
-//        binding.adView.adListener = object : AdListener() {
-//        }
     }
 
     override fun onPause() {

@@ -1,14 +1,17 @@
 package com.example.rolemanager.fragments
 
+import android.media.tv.AdRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.rolemanager.R
 import com.example.rolemanager.databinding.ActivityBottomBarBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class BottomBarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBottomBarBinding
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,8 @@ class BottomBarActivity : AppCompatActivity() {
 
         binding = ActivityBottomBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        firebaseAuth = FirebaseAuth.getInstance()
 
         val menuFragment = MenuFragment()
         val addFragment = AddFragment()
@@ -32,7 +37,6 @@ class BottomBarActivity : AppCompatActivity() {
             }
             true
         }
-
         setFragment(menuFragment)
     }
 
@@ -41,5 +45,12 @@ class BottomBarActivity : AppCompatActivity() {
             replace(binding.fragmentContainer.id, fragment)
             commit()
         }
+    }
+
+
+    override fun onPause() {
+        //Exit from firebaseAuth
+        firebaseAuth.signOut()
+        super.onPause()
     }
 }
