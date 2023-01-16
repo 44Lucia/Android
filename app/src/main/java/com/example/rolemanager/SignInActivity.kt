@@ -8,6 +8,9 @@ import com.example.rolemanager.databinding.ActivityLoginBinding
 import com.example.rolemanager.databinding.ActivitySignInBinding
 import com.example.rolemanager.fragments.BottomBarActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 class SignInActivity : AppCompatActivity() {
 
@@ -40,6 +43,18 @@ class SignInActivity : AppCompatActivity() {
                 if (pass == confirmPass){
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener{
                         if(it.isSuccessful) {
+
+                            val db = FirebaseFirestore.getInstance()
+                            val contacts = db.collection("users")
+                                .document(firebaseAuth.currentUser?.uid.toString())
+                                .set(
+                                    hashMapOf(
+                                        "name" to email.split("@").toTypedArray()[0],
+                                        "email" to email,
+                                        "id" to firebaseAuth.currentUser?.uid.toString()
+                                    )
+                                )
+
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                         }else{

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rolemanager.R
 import com.example.rolemanager.databinding.ItemContactBinding
 import com.example.rolemanager.messenger.chat.ChatActivity
+import com.example.rolemanager.messenger.chat.model.Chat
 import com.example.rolemanager.messenger.contacts.model.Contact
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -19,6 +21,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.firebase.auth.FirebaseAuth
 
 class ContactsRecyclerViewAdapter(
     private val activity: Activity,
@@ -95,6 +98,18 @@ class ContactsRecyclerViewAdapter(
             dialog.show()
             true
         }
+
+        holder.root.setOnClickListener {
+            val db = FirebaseAuth.getInstance()
+            val id_1 = db.currentUser?.uid.toString()
+            val id_2 = contact.userId
+
+            val chatID =  Chat.idChatOf(id_1, id_2)
+
+
+
+        }
+
     }
 
     override fun getItemCount(): Int = contacts.size
@@ -104,5 +119,6 @@ class ContactsRecyclerViewAdapter(
 
         val name: TextView = binding.contactName
         val image: ImageView = binding.contactImage
+        val root: View = binding.root
     }
 }

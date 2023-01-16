@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rolemanager.messenger.contacts.model.Contact
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
@@ -49,5 +51,20 @@ class ContactsViewModel : ViewModel() {
         contacts.postValue(contacts.value)
     }
 
+    fun getContactsFromDatabase(onSucces: (ArrayList<Contact>) -> Unit){
+        val db = FirebaseFirestore.getInstance()
+        val auth = FirebaseAuth.getInstance()
+
+        val contactList : ArrayList<Contact> = ArrayList()
+
+        val contacts = db.collection("users").get()
+            .addOnSuccessListener { documents ->
+                documents.forEach{
+                    val contact = Contact(it.get("name").toString(), it.get("id").toString(), null)
+                    contactList.add(contact)
+                }
+                onSucces(contactList)
+            }
+    }
 
 }

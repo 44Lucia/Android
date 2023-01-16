@@ -43,6 +43,10 @@ class ContactsActivity : AppCompatActivity() {
             adapter.updateContacts(it)
         }
         contactsViewModel.readData(this)
+
+        contactsViewModel.getContactsFromDatabase {
+            adapter.updateContacts(it)
+        }
     }
 
     override fun onResume() {
@@ -79,4 +83,5 @@ class ContactsActivity : AppCompatActivity() {
 
         finish()
     }
+
 }
