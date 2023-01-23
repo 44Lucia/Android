@@ -3,10 +3,9 @@ package com.example.rolemanager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.rolemanager.LoginRegister.Login.LoginActivity
+import com.example.rolemanager.LoginRegister.Register.SignInActivity
 import com.example.rolemanager.databinding.ActivityMainBinding
-import com.example.rolemanager.fragments.BottomBarActivity
-import com.example.rolemanager.fragments.MenuFragment
-import com.example.rolemanager.particlesList.PepoLista
 
 class MainActivity : AppCompatActivity() {
 

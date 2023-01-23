@@ -11,8 +11,7 @@ import com.example.rolemanager.messenger.contacts.model.Contact
 import com.google.android.gms.ads.*
 import com.google.firebase.auth.FirebaseAuth
 import androidx.activity.viewModels
-import com.example.rolemanager.messenger.contacts.ContactsRecyclerViewAdapter
-import com.example.rolemanager.LoginActivity
+import com.example.rolemanager.LoginRegister.Login.LoginActivity
 
 
 class ContactsActivity : AppCompatActivity() {

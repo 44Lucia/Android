@@ -1,7 +1,6 @@
 package com.example.rolemanager.messenger.chat.model
 
-import com.example.rolemanager.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
+import com.example.rolemanager.LoginRegister.Login.LoginActivity
 
 
 data class Chat(

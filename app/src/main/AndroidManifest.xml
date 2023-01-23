@@ -14,9 +14,17 @@
         android:theme="@style/Theme.RoleManager"
         tools:targetApi="31">
         <activity
-            android:name=".realtimedatabase.RealTimeDatabaseActivity"
+            android:name=".sharedprefs.SharedPreferencesActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".realtimedatabase.RealTimeDatabaseActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -29,37 +37,23 @@
             android:name=".particlesList.PepoLista"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoginRegister.Login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".LoginRegister.Register.SignInActivity"
             android:exported="true" />
         <activity
-            android:name=".SignIn2Activity"
+            android:name=".LoginRegister.Register.SignIn2Activity"
             android:exported="true" />
         <activity
             android:name=".messenger.contacts.ContactsActivity"
-            android:exported="true"
-            >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        <activity android:name=".messenger.chat.ChatActivity"
-            android:exported="true"
-            >
-
-        </activity>
+            android:exported="true"></activity>
+        <activity
+            android:name=".messenger.chat.ChatActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
-
-
         </activity>
     </application>
 
