@@ -18,44 +18,41 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView_profile_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-        app:srcCompat="@drawable/bg_circle" />
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/imageToChange"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="60dp"
 
-    <ImageView
-        android:id="@+id/imageView4"
+        app:civ_border_width="2dp"
+        app:civ_shadow="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/addPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="64dp"
         android:layout_weight="1"
-        android:background="#434141"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        android:text="photo"
+        app:layout_constraintBottom_toBottomOf="@+id/imageToChange"
+        app:layout_constraintStart_toEndOf="@+id/imageToChange"
+        app:layout_constraintTop_toTopOf="@+id/imageToChange" />
 
     <TextView
         android:id="@+id/editText_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_weight="1"
         android:text="Name"
         android:textColor="#FFFFFF"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_profile_picture" />
+        app:layout_constraintTop_toBottomOf="@+id/imageToChange" />
 
     <TextView
         android:id="@+id/textView6"
