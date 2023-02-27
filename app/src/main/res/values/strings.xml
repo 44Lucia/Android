@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">roleManager</string>
+    <string name="app_name">BeMyHands</string>
     <string name="login_user_hint">User</string>
     <string name="login_password_hint">Password</string>
     <string name="login_email_hint">Email</string>

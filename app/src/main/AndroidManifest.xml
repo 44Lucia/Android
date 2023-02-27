@@ -41,11 +41,6 @@
         <activity
             android:name=".fragments.BottomBarActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".particlesList.PepoLista"
@@ -61,7 +56,13 @@
             android:exported="true" />
         <activity
             android:name=".messenger.contacts.ContactsActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".messenger.chat.ChatActivity"
             android:exported="true" />
