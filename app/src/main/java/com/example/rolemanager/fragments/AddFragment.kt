@@ -11,15 +11,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.rolemanager.databinding.FragmentAddBinding
-import com.google.android.gms.tasks.Task
+import com.example.rolemanager.model.Post
+import com.example.rolemanager.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 
-private const val TAG = "CreateActivity"
+private const val TAG = "AddFragment"
 private const val PICK_PHOTO_CODE = 1234
 class AddFragment: Fragment() {
 
@@ -45,14 +45,14 @@ class AddFragment: Fragment() {
                 Log.i(TAG, "Failure getching signed in user", exception)
             }
 
-        val mDefault = getActivity().getPackageManager();
+        val mDefault = requireActivity().getPackageManager();
 
         binding.btnPickImage.setOnClickListener {
             Log.i(TAG, "Open up image picker on device")
             val imagePickerIntent = Intent(Intent.ACTION_GET_CONTENT)
             imagePickerIntent.type = "image/*"
             if (imagePickerIntent.resolveActivity(mDefault) != null){
-                activity.startActivityForResult(imagePickerIntent, PICK_PHOTO_CODE)
+                requireActivity().startActivityForResult(imagePickerIntent, PICK_PHOTO_CODE)
             }
 
             binding.btnSubmit.setOnClickListener {
@@ -61,7 +61,6 @@ class AddFragment: Fragment() {
         }
 
         storageReference = FirebaseStorage.getInstance().reference
-
 
         return binding.root
     }
