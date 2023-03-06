@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailLayout.text.toString()
             val pass = binding.passwordLayout.text.toString()
 
-           loginViewModel.loginWithEmail(email, pass)
+           loginViewModel.loginWithEmail(email,pass)
         }
     }
 

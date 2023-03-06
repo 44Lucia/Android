@@ -46,11 +46,4 @@ class BottomBarActivity : AppCompatActivity() {
             commit()
         }
     }
-
-
-    override fun onPause() {
-        //Exit from firebaseAuth
-        firebaseAuth.signOut()
-        super.onPause()
-    }
 }

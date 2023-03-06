@@ -47,7 +47,7 @@ class SignInActivity : AppCompatActivity() {
                                 .document(firebaseAuth.currentUser?.uid.toString())
                                 .set(
                                     hashMapOf(
-                                        "name" to email.split("@").toTypedArray()[0],
+                                        "username" to email.split("@").toTypedArray()[0],
                                         "email" to email,
                                         "id" to firebaseAuth.currentUser?.uid.toString()
                                     )

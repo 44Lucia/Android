@@ -51,11 +51,9 @@ class AddFragment: Fragment() {
 
         binding.btnPickImage.setOnClickListener {
             Log.i(TAG, "Open up image picker on device")
-            val imagePickerIntent = Intent(Intent.ACTION_GET_CONTENT)
+            val imagePickerIntent = Intent(Intent.ACTION_PICK   )
             imagePickerIntent.type = "image/*"
-            if (imagePickerIntent.resolveActivity(mDefault) != null){
-                requireActivity().startActivityForResult(imagePickerIntent, PICK_PHOTO_CODE)
-            }
+            startActivityForResult(imagePickerIntent, PICK_PHOTO_CODE)
 
             binding.btnSubmit.setOnClickListener {
                 handleSubmitButtonClick()
@@ -67,7 +65,6 @@ class AddFragment: Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_PHOTO_CODE){
@@ -98,6 +95,8 @@ class AddFragment: Fragment() {
         binding.btnSubmit.isEnabled = false
         val photoUploadUri = photoUri as Uri
         val photoReference = storageReference.child("images/${System.currentTimeMillis()}-photo.jpg")
+
+        Toast.makeText(this.context, signedInUser!!.username, Toast.LENGTH_SHORT).show()
 
         // Upload photo to Firebase Storage
         photoReference.putFile(photoUploadUri).continueWithTask { photoUploadTask ->

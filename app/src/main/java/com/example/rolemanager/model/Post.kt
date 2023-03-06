@@ -1,6 +1,7 @@
 package com.example.rolemanager.model
 
-import com.google.firebase.database.PropertyName
+import com.google.firebase.firestore.PropertyName
+import com.google.gson.annotations.SerializedName
 
 data class Post(
     var description: String = "",
