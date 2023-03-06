@@ -37,13 +37,15 @@ class AddFragment: Fragment() {
         binding = FragmentAddBinding.inflate(inflater)
         firestoreDb = FirebaseFirestore.getInstance()
 
-        firestoreDb.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid as String)
-            .get().addOnSuccessListener { userSnapshot ->
-                signedInUser = userSnapshot.toObject(User::class.java)
-                Log.i(TAG, "signed in user: $signedInUser")
-            }.addOnFailureListener{ exception ->
-                Log.i(TAG, "Failure getching signed in user", exception)
-            }
+        (FirebaseAuth.getInstance().currentUser?.uid as? String)?.let {
+            firestoreDb.collection("users").document(it)
+                .get().addOnSuccessListener { userSnapshot ->
+                    signedInUser = userSnapshot.toObject(User::class.java)
+                    Log.i(TAG, "signed in user: $signedInUser")
+                }.addOnFailureListener{ exception ->
+                    Log.i(TAG, "Failure getching signed in user", exception)
+                }
+        }
 
         val mDefault = requireActivity().getPackageManager();
 
@@ -65,6 +67,7 @@ class AddFragment: Fragment() {
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_PHOTO_CODE){

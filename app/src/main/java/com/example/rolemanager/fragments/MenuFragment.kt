@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rolemanager.R
 import com.example.rolemanager.databinding.FragmentMenuBinding
 import com.example.rolemanager.model.Post
 import com.google.firebase.firestore.FirebaseFirestore
@@ -55,5 +56,4 @@ class MenuFragment: Fragment() {
 
         return binding.root
     }
-
 }
