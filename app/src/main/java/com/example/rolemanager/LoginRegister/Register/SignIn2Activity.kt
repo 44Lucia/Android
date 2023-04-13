@@ -14,6 +14,13 @@ class SignIn2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val username: String
+        val email: String
+        val password: String
+        val age: String
+        val bio: String
+        val profilePic: String?
+
         binding = ActivitySignIn2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -21,5 +28,6 @@ class SignIn2Activity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
         }
 
+        firebaseAuth = FirebaseAuth.getInstance()
     }
 }

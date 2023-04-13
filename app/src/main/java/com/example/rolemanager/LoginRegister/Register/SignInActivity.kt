@@ -32,7 +32,7 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.button.setOnClickListener{
+        binding.signUp.setOnClickListener{
             val email = binding.emailLayout.text.toString()
             val pass = binding.passwordLayout.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()

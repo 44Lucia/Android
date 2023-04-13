@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="@+id/userInputWrapper" />
 
     <TextView
-        android:id="@+id/password"
+        android:id="@+id/profilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="@+id/passwordInputWrapper" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -139,11 +139,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
-        android:text="Sign up"
+        android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,7 +155,7 @@
         android:layout_height="wrap_content"
         android:text="Already Registered, Sign In"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/signUp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordConfirmInputWrapper" />
 

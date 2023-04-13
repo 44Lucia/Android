@@ -23,28 +23,29 @@
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:text="Age"
         app:layout_constraintBottom_toTopOf="@+id/userInputWrapper"
-        app:layout_constraintStart_toStartOf="@+id/userInputWrapper" />
+        app:layout_constraintStart_toStartOf="@+id/userInputWrapper"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/password"
+        android:id="@+id/profilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Profile Picture"
+        app:layout_constraintStart_toStartOf="@+id/userInputWrapper"
+        app:layout_constraintTop_toBottomOf="@+id/userInputWrapper" />
+
+    <TextView
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/passwordInputWrapper"
-        app:layout_constraintStart_toStartOf="@+id/passwordInputWrapper" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Email"
+        android:text="Description"
         app:layout_constraintBottom_toTopOf="@+id/passwordConfirmInputWrapper"
-        app:layout_constraintStart_toStartOf="@+id/passwordConfirmInputWrapper" />
+        app:layout_constraintStart_toStartOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/returnButton"
@@ -64,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="120dp"
         android:hint="@string/signIn_age_hint"
@@ -73,36 +75,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.44"
-        app:startIconContentDescription="@string/login_user_hint"
-        app:startIconDrawable="@drawable/ic_baseline_blur_circular_24">
+        app:startIconContentDescription="@string/login_user_hint">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <DatePicker
             android:id="@+id/emailLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordInputWrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:hint="@string/signIn_photo_hint"
-        app:endIconMode="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userInputWrapper"
-        app:startIconContentDescription="@string/signIn_photo_hint"
-        app:startIconDrawable="@drawable/ic_baseline_account_circle_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,32 +91,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:hint="@string/signIn_text_hint"
+        app:layout_constraintBottom_toTopOf="@+id/signUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInputWrapper"
         app:startIconContentDescription="@string/signIn_text_hint"
-        app:startIconDrawable="@drawable/ic_baseline_message_24">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/confirmPassEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
-        android:text="Button"
+        android:layout_marginBottom="8dp"
+        android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordConfirmInputWrapper" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintStart_toStartOf="@+id/profilePic"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Choose Image"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
