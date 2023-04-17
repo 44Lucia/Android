@@ -1,10 +1,10 @@
-package com.example.rolemanager.LoginRegister.Register
+package com.example.rolemanager.loginRegister.Register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.rolemanager.LoginRegister.Login.LoginActivity
+import com.example.rolemanager.loginRegister.Login.LoginActivity
 import com.example.rolemanager.MainActivity
 import com.example.rolemanager.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth

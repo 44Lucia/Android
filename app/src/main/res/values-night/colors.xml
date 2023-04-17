@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#5F1DAF</color>
+    <color name="purple_500">#2C0860</color>
+    <color name="purple_700">#19054C</color>
+    <color name="teal_200">#06786D</color>
+    <color name="teal_700">#015554</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="quarks">#240A53</color>
+    <color name="leptons">#004A43</color>
+    <color name="gauge_bosons">#670224</color>
+    <color name="higgs">#775901</color>
+</resources>

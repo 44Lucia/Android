@@ -1,6 +1,6 @@
 package com.example.rolemanager.messenger.chat.model
 
-import com.example.rolemanager.LoginRegister.Login.LoginActivity
+import com.example.rolemanager.loginRegister.Login.LoginActivity
 
 
 data class Chat(

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rolemanager.LoginRegister.Login.LoginActivity
+import com.example.rolemanager.loginRegister.Login.LoginActivity
 import com.example.rolemanager.R
 import com.example.rolemanager.databinding.ItemReceivedMessageBinding
 import com.example.rolemanager.databinding.ItemSentMessageBinding

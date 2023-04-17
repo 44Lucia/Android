@@ -1,6 +1,5 @@
-package com.example.rolemanager.LoginRegister.Login
+package com.example.rolemanager.loginRegister.Login
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth

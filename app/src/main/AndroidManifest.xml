@@ -47,13 +47,13 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".LoginRegister.Login.LoginActivity"
+            android:name=".loginRegister.Login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginRegister.Register.SignInActivity"
+            android:name=".loginRegister.Register.SignInActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginRegister.Register.SignIn2Activity"
+            android:name=".loginRegister.Register.SignIn2Activity"
             android:exported="true" />
         <activity
             android:name=".messenger.contacts.ContactsActivity"
