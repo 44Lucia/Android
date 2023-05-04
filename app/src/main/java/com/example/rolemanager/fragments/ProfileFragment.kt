@@ -1,6 +1,7 @@
 package com.example.rolemanager.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.rolemanager.databinding.FragmentProfileBinding
+import com.example.rolemanager.loginRegister.Login.LoginActivity
+import com.example.rolemanager.loginRegister.Register.SignInActivity
 import com.example.rolemanager.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -57,6 +60,12 @@ class ProfileFragment: Fragment() {
                 else
                     Toast.makeText(this.context,"User has denied the permission", Toast.LENGTH_LONG).show()
             }
+
+        binding.SignOut.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent (getActivity(), LoginActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
 
         binding.addPhoto.setOnClickListener {
             context?.let {

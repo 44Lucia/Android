@@ -89,7 +89,7 @@ class SignInActivity : AppCompatActivity() {
                 binding.newPic.drawToBitmap().toString()
             )
 
-            if (users.email.isNotEmpty() && users.password.isNotEmpty() && users.confirmPass.isNotEmpty()){
+            if (users.email.isNotEmpty() && users.password.isNotEmpty() && users.confirmPass.isNotEmpty() && users.bio.isNotEmpty() && users.age.isNotEmpty() && users.username.isNotEmpty()){
                 if (users.password == users.confirmPass){
                     firebaseAuth.createUserWithEmailAndPassword(users.email, users.password).addOnCompleteListener{
                         if(it.isSuccessful) {

@@ -43,6 +43,7 @@ class AddAdapter (val context: Context, val posts: List<Post>) :
         fun bind(post: Post) {
             itemView.tvUsername.text = post.user?.username
             itemView.tvDescription.text = post.description
+            itemView.tvLocation.text = post.location
             Glide.with(context).load(post.imageUrl).into(itemView.ivPost)
             itemView.tvRelativeTime.text = DateUtils.getRelativeTimeSpanString(post.creationTimeMs)
         }

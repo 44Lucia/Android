@@ -86,6 +86,10 @@ class AddFragment: Fragment() {
             Toast.makeText(this.context, "No photo selected", Toast.LENGTH_SHORT).show()
             return
         }
+        if (binding.etLocation.text.isBlank()){
+            Toast.makeText(this.context, "No location selected", Toast.LENGTH_SHORT).show()
+            return
+        }
         if (binding.etDescription.text.isBlank()){
             Toast.makeText(this.context, "Description cannot be empty", Toast.LENGTH_SHORT).show()
             return
@@ -110,6 +114,7 @@ class AddFragment: Fragment() {
             // Create a post object with the image URL and add that to the posts collection
             val post = Post(
                 binding.etDescription.text.toString(),
+                binding.etLocation.text.toString(),
                 downloadUrlTask.result.toString(),
                 System.currentTimeMillis(),
                 signedInUser)
@@ -121,6 +126,7 @@ class AddFragment: Fragment() {
                 Toast.makeText(this.context, "Failed to save post", Toast.LENGTH_SHORT).show()
             }
             binding.etDescription.text.clear()
+            binding.etLocation.text.clear()
             binding.imageView.setImageResource(0)
             Toast.makeText(this.context, "Succes", Toast.LENGTH_SHORT).show()
         }
