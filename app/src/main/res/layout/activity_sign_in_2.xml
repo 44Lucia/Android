@@ -104,7 +104,8 @@
             android:id="@+id/confirmPassEt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:visibility="visible" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

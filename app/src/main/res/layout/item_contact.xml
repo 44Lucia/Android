@@ -18,6 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Max Gil Sánchez"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/contact_image"
         app:layout_constraintStart_toEndOf="@+id/contact_image"
         app:layout_constraintTop_toTopOf="@+id/contact_image" />

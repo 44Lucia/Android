@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#698C6A" >
+    android:background="@color/background">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="409dp"
         android:layout_height="250dp"
-        android:background="#9BBC9C"
+        android:background="@color/background2"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="photo"
+        android:backgroundTint="@color/leptons"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/imageToChange"
         app:layout_constraintStart_toEndOf="@+id/imageToChange"
         app:layout_constraintTop_toTopOf="@+id/imageToChange" />

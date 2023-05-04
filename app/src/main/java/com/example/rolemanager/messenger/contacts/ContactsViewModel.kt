@@ -1,8 +1,10 @@
 package com.example.rolemanager.messenger.contacts
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.rolemanager.messenger.chat.ChatActivity
 import com.example.rolemanager.messenger.contacts.model.Contact
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
@@ -60,7 +62,7 @@ class ContactsViewModel : ViewModel() {
         val contacts = db.collection("users").get()
             .addOnSuccessListener { documents ->
                 documents.forEach{
-                    val contact = Contact(it.get("name").toString(), it.get("id").toString(), null)
+                    val contact = Contact(it.get("username").toString(), it.get("id").toString(), null)
                     contactList.add(contact)
                 }
                 onSucces(contactList)

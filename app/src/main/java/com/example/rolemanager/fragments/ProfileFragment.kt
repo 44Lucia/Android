@@ -3,6 +3,7 @@ package com.example.rolemanager.fragments
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.rolemanager.databinding.FragmentProfileBinding
-import io.grpc.Context
+import com.example.rolemanager.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
+private const val TAG = "ProfileFragment"
 class ProfileFragment: Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
+    private var signedInUser: User? = null
+    private lateinit var firestoreDb: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,11 +29,26 @@ class ProfileFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater)
+        firestoreDb = FirebaseFirestore.getInstance()
+
+        (FirebaseAuth.getInstance().currentUser?.uid as? String)?.let {
+            firestoreDb.collection("users").document(it)
+                .get().addOnSuccessListener { userSnapshot ->
+                    signedInUser = userSnapshot.toObject(User::class.java)
+                    Log.i(TAG, "signed in user: $signedInUser")
+                }.addOnFailureListener{ exception ->
+                    Log.i(TAG, "Failure getching signed in user", exception)
+                }
+        }
 
         val activityForResultLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { RESULT ->
                 binding.imageToChange.setImageBitmap(RESULT)
             }
+
+        //binding.imageToChange.setImageBitmap(signedInUser?.profilePicturePath)
+        binding.editTextName.text = signedInUser?.username.toString()
+        binding.editTextBio.text = signedInUser?.bio.toString()
 
         val requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->

@@ -1,11 +1,11 @@
 package com.example.rolemanager.model
 
 data class User(var username: String,
-                val password: String,
-                val email: String,
+                var password: String,
+                var confirmPass: String,
+                var email: String,
                 val bio:  String,
                 val age: String,
-                val profilePicturePath: String?){
-    constructor(): this( "", "","", "","",null)
-
+                val profilePicturePath: String? = ""){
+    constructor(): this( "","", "","", "","",null)
 }
