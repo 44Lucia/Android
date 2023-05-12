@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Username or Email"
+        android:text="Email"
         app:layout_constraintBottom_toTopOf="@+id/userInputWrapper"
         app:layout_constraintStart_toStartOf="@+id/userInputWrapper" />
 

@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.rolemanager.R
 import com.example.rolemanager.databinding.FragmentAddBinding
+import com.example.rolemanager.model.LocalUser
 import com.example.rolemanager.model.Post
 import com.example.rolemanager.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +32,7 @@ class AddFragment: Fragment() {
     private lateinit var storageReference: StorageReference
     private lateinit var firestoreDb: FirebaseFirestore
     private var photoUri: Uri? = null
-    private var signedInUser: User? = null
+    private var idPost: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,21 +42,11 @@ class AddFragment: Fragment() {
         binding = FragmentAddBinding.inflate(inflater)
         firestoreDb = FirebaseFirestore.getInstance()
 
-        (FirebaseAuth.getInstance().currentUser?.uid as? String)?.let {
-            firestoreDb.collection("users").document(it)
-                .get().addOnSuccessListener { userSnapshot ->
-                    signedInUser = userSnapshot.toObject(User::class.java)
-                    Log.i(TAG, "signed in user: $signedInUser")
-                }.addOnFailureListener{ exception ->
-                    Log.i(TAG, "Failure getching signed in user", exception)
-                }
-        }
-
         val mDefault = requireActivity().getPackageManager();
 
         binding.btnPickImage.setOnClickListener {
             Log.i(TAG, "Open up image picker on device")
-            val imagePickerIntent = Intent(Intent.ACTION_PICK   )
+            val imagePickerIntent = Intent(Intent.ACTION_PICK)
             imagePickerIntent.type = "image/*"
             startActivityForResult(imagePickerIntent, PICK_PHOTO_CODE)
 
@@ -94,7 +86,7 @@ class AddFragment: Fragment() {
             Toast.makeText(this.context, "Description cannot be empty", Toast.LENGTH_SHORT).show()
             return
         }
-        if (signedInUser == null){
+        if (LocalUser.user == null){
             Toast.makeText(this.context, "No signed in user, please wait", Toast.LENGTH_SHORT).show()
             return
         }
@@ -103,7 +95,7 @@ class AddFragment: Fragment() {
         val photoUploadUri = photoUri as Uri
         val photoReference = storageReference.child("images/${System.currentTimeMillis()}-photo.jpg")
 
-        Toast.makeText(this.context, signedInUser!!.username, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, LocalUser.user.username, Toast.LENGTH_SHORT).show()
 
         // Upload photo to Firebase Storage
         photoReference.putFile(photoUploadUri).continueWithTask { photoUploadTask ->
@@ -113,12 +105,14 @@ class AddFragment: Fragment() {
         }.continueWithTask{ downloadUrlTask ->
             // Create a post object with the image URL and add that to the posts collection
             val post = Post(
-                binding.etDescription.text.toString(),
-                binding.etLocation.text.toString(),
+                LocalUser.user.idLastPost,
+                LocalUser.user.email,
+                "Description: " + binding.etDescription.text.toString(),
+                "Location: " + binding.etLocation.text.toString(),
                 downloadUrlTask.result.toString(),
                 System.currentTimeMillis(),
-                signedInUser)
-            firestoreDb.collection("posts").add(post)
+                LocalUser.user)
+            firestoreDb.collection("posts").document(LocalUser.user.email + "_" + LocalUser.user.idLastPost).set(post)
         }.addOnCompleteListener{ postCreationTask ->
             binding.btnSubmit.isEnabled = true
             if (!postCreationTask.isSuccessful){
@@ -128,7 +122,12 @@ class AddFragment: Fragment() {
             binding.etDescription.text.clear()
             binding.etLocation.text.clear()
             binding.imageView.setImageResource(0)
+            setNextInt()
+            firestoreDb.collection("users").document(LocalUser.user.email).set(LocalUser.user)
+
             Toast.makeText(this.context, "Succes", Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun setNextInt(): Int = LocalUser.user.idLastPost++
 }

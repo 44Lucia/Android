@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.*
 import android.content.Context
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -32,12 +33,6 @@ class MessagesFragment: Fragment() {
         adapter = ContactsRecyclerViewAdapter(requireContext() as Activity, contactsViewModel)
         binding.contactsRecyclerView.adapter = adapter
 
-        binding.addContactButton.setOnClickListener {
-            val newContact = binding.newContact.text.toString()
-            binding.newContact.text?.clear()
-            contactsViewModel.addContact(Contact(newContact, newContact))
-        }
-
         MobileAds.initialize(requireContext() as Activity)
 
         /*contactsViewModel.contacts.observe(this) {
@@ -48,6 +43,7 @@ class MessagesFragment: Fragment() {
 
         contactsViewModel.getContactsFromDatabase {
             adapter.updateContacts(it)
+            println(contactsViewModel.contactList.size)
         }
 
         return binding.root

@@ -7,12 +7,15 @@ import android.widget.Toast
 import com.example.rolemanager.loginRegister.Register.SignInActivity
 import com.example.rolemanager.databinding.ActivityLoginBinding
 import com.example.rolemanager.fragments.BottomBarActivity
+import com.example.rolemanager.model.LocalUser
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
     var loginViewModel = LoginViewModel()
+    lateinit var firestoreDb: FirebaseFirestore
 
     companion object {
         val currentUser: String
@@ -25,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firestoreDb = FirebaseFirestore.getInstance()
+
         loginViewModel.isLoggedIn.observe(this){
             if (it == true){
                  Toast.makeText(
@@ -32,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
                      "Logged in as" + loginViewModel.getCurrentUser(),
                      Toast.LENGTH_SHORT
                   ).show()
+                LocalUser.updateLocalDbWithRemoteData(FirebaseAuth.getInstance().currentUser?.email ?: "Anonymous", firestoreDb.collection("users"), this)
                 goToMainActivity()
             }else{
                 Toast.makeText(this,"Incorrect password", Toast.LENGTH_SHORT).show()
@@ -45,8 +51,10 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener{
             val email = binding.emailLayout.text.toString()
             val pass = binding.passwordLayout.text.toString()
+            val collection = firestoreDb.collection("users")
 
-           loginViewModel.loginWithEmail(email,pass)
+            LocalUser.updateLocalDbWithRemoteData(email, collection, this)
+            loginViewModel.loginWithEmail(email,pass)
         }
     }
 

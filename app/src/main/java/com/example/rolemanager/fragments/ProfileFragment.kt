@@ -12,18 +12,21 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.rolemanager.databinding.FragmentProfileBinding
 import com.example.rolemanager.loginRegister.Login.LoginActivity
 import com.example.rolemanager.loginRegister.Register.SignInActivity
+import com.example.rolemanager.model.LocalUser
 import com.example.rolemanager.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.item_posts.view.*
+import kotlin.math.sign
 
 private const val TAG = "ProfileFragment"
 class ProfileFragment: Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-    private var signedInUser: User? = null
     private lateinit var firestoreDb: FirebaseFirestore
 
     override fun onCreateView(
@@ -34,24 +37,14 @@ class ProfileFragment: Fragment() {
         binding = FragmentProfileBinding.inflate(inflater)
         firestoreDb = FirebaseFirestore.getInstance()
 
-        (FirebaseAuth.getInstance().currentUser?.uid as? String)?.let {
-            firestoreDb.collection("users").document(it)
-                .get().addOnSuccessListener { userSnapshot ->
-                    signedInUser = userSnapshot.toObject(User::class.java)
-                    Log.i(TAG, "signed in user: $signedInUser")
-                }.addOnFailureListener{ exception ->
-                    Log.i(TAG, "Failure getching signed in user", exception)
-                }
-        }
-
         val activityForResultLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { RESULT ->
                 binding.imageToChange.setImageBitmap(RESULT)
             }
 
-        //binding.imageToChange.setImageBitmap(signedInUser?.profilePicturePath)
-        binding.editTextName.text = signedInUser?.username.toString()
-        binding.editTextBio.text = signedInUser?.bio.toString()
+        this.context?.let { Glide.with(it).load(LocalUser.user.profilePicturePath).into(binding.imageToChange) }
+        binding.editTextName.text = LocalUser.user.username
+        binding.editTextBio.text = LocalUser.user.bio
 
         val requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->

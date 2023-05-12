@@ -13,35 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:hint="New contact"
         android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/addContactButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/newContact"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:textColor="#FFFEFE"
             android:textColorHint="#FFFFFF"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/addContactButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="add"
-        android:backgroundTint="@color/leptons"
-        android:textColor="#FFFFFF"
-        app:icon="@drawable/ic_baseline_add_comment_24"
-        app:layout_constraintBottom_toBottomOf="@+id/newContactWrapper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newContactWrapper" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contacts_recycler_view"

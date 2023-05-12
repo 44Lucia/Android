@@ -4,6 +4,8 @@ import com.google.firebase.firestore.PropertyName
 import com.google.gson.annotations.SerializedName
 
 data class Post(
+    var id: Int = 0,
+    var emailUser: String = "",
     var description: String = "",
     var location: String = "",
     @get:PropertyName("image_url") @set:PropertyName("image_url") var imageUrl: String = "",

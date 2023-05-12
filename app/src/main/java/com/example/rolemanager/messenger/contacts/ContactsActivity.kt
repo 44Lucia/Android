@@ -30,12 +30,6 @@ class ContactsActivity : AppCompatActivity() {
         adapter = ContactsRecyclerViewAdapter(this, contactsViewModel)
         binding.contactsRecyclerView.adapter = adapter
 
-        binding.addContactButton.setOnClickListener {
-            val newContact = binding.newContact.text.toString()
-            binding.newContact.text?.clear()
-            contactsViewModel.addContact(Contact(newContact, newContact))
-        }
-
         MobileAds.initialize(this)
 
         contactsViewModel.contacts.observe(this) {

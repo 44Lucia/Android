@@ -66,5 +66,19 @@
             android:backgroundTint="@color/leptons"
             android:text="Request"
             android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:visibility="gone" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

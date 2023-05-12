@@ -2,6 +2,7 @@ package com.example.rolemanager.messenger.contacts
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rolemanager.messenger.chat.ChatActivity
@@ -16,6 +17,7 @@ class ContactsViewModel : ViewModel() {
 
     val contacts = MutableLiveData<ArrayList<Contact>>()
     private val FILENAME = "contacts.dat"
+    val contactList : ArrayList<Contact> = ArrayList()
 
     fun saveData(context: Context) {
         context.openFileOutput(FILENAME, Context.MODE_PRIVATE).use {
@@ -55,18 +57,15 @@ class ContactsViewModel : ViewModel() {
 
     fun getContactsFromDatabase(onSucces: (ArrayList<Contact>) -> Unit){
         val db = FirebaseFirestore.getInstance()
-        val auth = FirebaseAuth.getInstance()
-
-        val contactList : ArrayList<Contact> = ArrayList()
 
         val contacts = db.collection("users").get()
             .addOnSuccessListener { documents ->
                 documents.forEach{
-                    val contact = Contact(it.get("username").toString(), it.get("id").toString(), null)
+                    val contact = Contact(it.get("username").toString(),it.get("email").toString() ,it.get("bio").toString(),it.get("age").toString() ,
+                        it.get("id").toString(),null)
                     contactList.add(contact)
                 }
                 onSucces(contactList)
             }
     }
-
 }

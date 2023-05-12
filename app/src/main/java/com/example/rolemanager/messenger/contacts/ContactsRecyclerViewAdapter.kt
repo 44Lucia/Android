@@ -13,12 +13,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rolemanager.R
 import com.example.rolemanager.databinding.ItemContactBinding
 import com.example.rolemanager.loginRegister.Register.SignInActivity
 import com.example.rolemanager.messenger.chat.ChatActivity
 import com.example.rolemanager.messenger.chat.model.Chat
 import com.example.rolemanager.messenger.contacts.model.Contact
+import com.example.rolemanager.model.LocalUser
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -66,11 +68,10 @@ class ContactsRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contacts[position]
         holder.name.text = contact.name
+        holder.image.setImageURI(contact.imageFile)
 
         holder.itemView.setOnClickListener {
-            val intent = Intent (activity, ChatActivity::class.java)
-            activity.startActivity(intent)
-            /*val intent = Intent(activity, ChatActivity::class.java)
+            val intent = Intent(activity, ChatActivity::class.java)
             intent.putExtra(ChatActivity.EXTRA_USER_ID, contact.userId)
 
             ad?.apply {
@@ -88,7 +89,7 @@ class ContactsRecyclerViewAdapter(
                     }
                 }
                 show(activity)
-            } ?: activity.startActivity(intent)*/
+            } ?: activity.startActivity(intent)
         }
 
         holder.itemView.setOnLongClickListener {
