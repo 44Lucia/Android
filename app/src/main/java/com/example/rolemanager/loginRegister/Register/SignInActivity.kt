@@ -133,8 +133,10 @@ class SignInActivity : AppCompatActivity() {
                     firestoreDb.collection("users").document(LocalUser.user.email)
                         .set(LocalUser.user)
                 }
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
+                firebaseAuth.createUserWithEmailAndPassword( binding.emailLayout.text.toString(), binding.passwordLayout.text.toString()).addOnCompleteListener{
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
